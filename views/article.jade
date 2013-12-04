@@ -1,0 +1,110 @@
+//- Newspad ver. 1
+//- Copyright (c) Microsoft Corporation
+//- All rights reserved. 
+//- Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+//- THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+//- See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.
+
+extends layout
+
+block content
+  div#versions(class="modal hide fade")
+    div.modal-header
+      button(type="button",class="close",data-dismiss="modal", aria-hidden="true")&times;
+      h3 Version History
+    div#version_cards.modal-body
+    div.modal-footer
+      a(href="#", class="btn", data-dismiss="modal") Close
+  div#export(class="modal hide fade")
+    div.modal-header
+      button(type="button",class="close",data-dismiss="modal", aria-hidden="true")&times;
+      h3 Export Article
+    div.modal-body
+      p To embed this article, copy this HTML and paste it into your site.
+      label width:
+        input#embed_width(name="embed_width", style="width:30px;", value="500")
+      label height:
+        input#embed_height(name="embed_height", style="width:30px;", value="650")
+      textarea#export_html
+    div.modal-footer
+      a.btn(href="#", data-dismiss="modal") Close
+  div#article_container.container-fluid
+    link(rel='stylesheet', href='/stylesheets/article.css')
+    link(rel='stylesheet', href='/stylesheets/read.css')
+    input#article_id(type="hidden", name="article_id", value="#{article}")
+    div.row-fluid
+      div#article_contents.span8 &nbsp;
+      div.span4.docs-sidebar
+        div.navbar#edit_toolbar(data-spy="affix",data-offset-top="00", style="position:fixed")
+          ul.nav.nav-list.docs-sidenav
+            li
+              a(href="#improve")
+                i.icon-chevron-left
+                | Ask for Improvements
+            li
+              a(href="#offerhelp")
+                i.icon-chevron-left
+                | Offer To Help
+            li
+              a(href="/#{title}/read")
+                i.icon-chevron-left
+                | Read Article
+            li
+              a#export_button(data-toggle="modal", href="#export")
+                i.icon-chevron-left
+                | Embed
+          div &nbsp;
+          div
+            h5 Contributors:
+            textarea(id="#{article}_contributors",  placeholder="contributor names...")
+        //div(data-spy="affix",data-offset-top="00") <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/search?q=%23facsumm" data-widget-id="357228304257912833">Tweets about "#facsumm"</a>
+        //a.twitter-timeline(data-dnt="true", href="https://twitter.com/search?q=%23zombiewalk",data-widget-id="353625505859268608")Tweets about "#zombiewalk"
+        //span <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+  div.container-fluid
+    div#new_section.row-fluid
+      div.new_section.span8
+        h2 Add new section
+    div.row
+      div#data_debug.span4
+    div.row
+      hr
+
+  script(src='/javascripts/app/article_view.js', defer)
+  script#contributor(type="text/html")
+    |<div class="contributor"><%=name%></div>
+  script#version_card_template(type='text/html')
+    |<div class="version_card row-fluid">
+    |  <div class="span1 label"><%=v%></div>
+    |  <div class="span8 contents"><%=c%></div>
+    |</div>
+  script#embed_template(type='text/html')
+    |<a id="newspad_article" href="http://newspad.at/<%=id%>/read" data-article-id="<%=id%>" data-width="<%=width%>px" data-height="<%=height%>px" class="newspad-article">Read about "<%=id%>" on NewsPad</a><script type="text/javascript">!function(d,s,id){var e,f=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'http';if(!d.getElementById(id)){e=d.createElement(s);e.id=id; e.src=p + "://newspad.at/javascripts/app/embed.js";f.parentNode.insertBefore(e,f);}}(document,"script","newspad-embed");[/script]
+  script#section_template(type='text/html')
+    |<!--<div class="section" id='<%=id%>'>-->
+    | <div class="row-fluid">
+    |   <div class="span10">
+    |     <textarea class="section_title" placeholder="write subtitle here..." id="<%=id%>_title"></textarea>
+    |   </div>
+    |   <!--<div class="span2">(<a href="#<%=id%>" name ="<%=id%>" id="<%=id%>"><small>link</small></a>)</div>-->
+    | </div>
+    | <div class="row-fluid">
+    |   <div class="headerimages span10">
+    |     <div id="<%=id%>_image" class="embed_target"></div>
+    |     <div class="embed_edit hidden">
+    |        <textarea placeholder="paste an image embed code here..." id="<%=id%>_image_doc"></textarea>
+    |     </div>
+    |     <div class="btn btn-primary flip_image"> Edit Media</div>
+    |   </div>
+    |   <div class="span2">
+    |     <a id="history_button" class="history btn" href="#versions" data-toggle="modal" data-name="<%=id%>_image_doc"><i class="icon-backward"></i></a>
+    | </div>
+    | </div>
+    | <div class="row-fluid">
+    |   <div class="span10">
+    |     <textarea class="section_content" id="<%=id%>_content" placeholder="write content here..."></textarea>
+    |   </div>
+    |   <div class="span2">
+    |     <a id="history_button" class="history btn" href="#versions" data-toggle="modal" data-name="<%=id%>_content"><i class="icon-backward"></i></a>
+    | </div>
+    |<!--</div>-->

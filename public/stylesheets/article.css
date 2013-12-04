@@ -1,0 +1,180 @@
+/* Newspad ver. 1
+Copyright (c) Microsoft Corporation
+All rights reserved. 
+Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.*/
+
+#article_contents textarea:first{
+    font-size: 36px;
+    font-weight: bold;
+    line-height:105%;
+ /*   border: none;
+    box-shadow: none;*/
+    width:100%;
+}
+
+.navbar-fixed-top{
+  position:fixed;
+}
+
+.expandingText{
+  margin-top:-10px;
+  margin-bottom:22px;
+}
+
+.navbar-fixed-top .brand{
+  margin-left:20px;
+  margin-right:10px;
+}
+
+#appspacer{
+  height:60px;
+}
+
+.navbar-inner .brand{
+  padding-top:0px;
+  padding-bottom:0px;
+}
+
+textarea.section_title{
+  margin-top:15px;
+  font-size:22px;
+  line-height:100%;
+  font-weight:bold;
+/*  border:none;
+  box-shadow:none;*/
+  height: 35px;
+  width:100%;
+  border-left:3px solid #aaa;
+}
+
+textarea#content,textarea.section_content{
+    height: 80px;
+    width:100%;
+    font-size: 14px;
+   /* border: none;
+    box-shadow: none;*/
+    font-weight:100;
+    color: #808080;
+    font-family:helvetica;
+}
+
+textarea#title,textarea#content{
+  border-left:3px solid #aaa;
+}
+
+
+textarea.section_content{
+  border-left:3px solid #999;
+}
+
+.headerimages img{
+ width:100%;
+}
+.headerimages{
+  /*max-height: 360px;*/
+  overflow: hidden;
+  position:relative;
+}
+.embed_target{
+  /*margin-top:20px;*/
+  margin-bottom:20px;
+}
+
+#add_image {
+  cursor: pointer;
+}
+
+.hidden{
+  display:none;
+}
+
+.embed_edit textarea{
+  height:200px;
+  width:100%;
+}
+
+#navbar_title{
+  padding-top:2px;
+  font-size:18px;
+  line-height:40px;
+}
+
+.headerimages .flip_image{
+  position:absolute;
+  right:0px;
+  top:0px;
+}
+
+.new_section{
+ border:2px dashed #ccc;
+ border-radius:10px;
+ height:100px;
+ margin-top:10px;
+}
+
+.new_section h2{
+  line-height:100px;
+  text-align:center;
+  margin:0px;
+  padding:0px;
+  color:#ccc;
+  cursor: pointer;
+}
+
+.new_section:hover h2{
+  color:#666;
+}
+
+.section{
+  /*border-left:2px solid #ccc;*/
+}
+
+::-webkit-input-placeholder {
+   font-weight:normal;
+   color: #aaa !important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-weight:normal;
+   color: #aaa !important; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-weight:normal;
+   color: #aaa !important;  
+}
+
+:-ms-input-placeholder {  
+   font-weight:normal;
+   color: #aaa !important;  
+}
+
+#data_debug{
+  display:none;
+}
+
+textarea#export_html{
+  width:90%;
+}
+
+/* version cards */
+
+.version_card{
+ background:#eee;
+ margin-bottom:5px;
+}
+
+/* media filler */
+
+.media_filler{
+  background:url("/images/image_pattern.png");
+  width:100%;
+  height:150px;
+  border-radius:5px;
+  line-height:150px;
+  font-size:42px;
+  color:#ccc;
+  text-align:center;
+}

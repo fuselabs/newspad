@@ -1,0 +1,14 @@
+Events logged by the activity logger:
+
+  Click to open the note creation dialogue
+  Leave Note
+  Tweet Note (open the tweet box. It might not get sent)
+  Close Note
+  Toggle Editing Open
+  Toggle Editing Closed
+  Toggle Offer To Help Open
+  Toggle Offer to Help Closed
+  Toggle Ask For Improvements Open
+  Toggle Ask for Improvements Closed
+  Add Section
+  Insert Media Button

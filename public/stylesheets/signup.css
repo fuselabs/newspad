@@ -1,0 +1,646 @@
+﻿/* Newspad ver. 1
+Copyright (c) Microsoft Corporation
+All rights reserved. 
+Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.*/
+
+body {
+    font-family: Arial;
+    font-size: 14px;
+    margin:  0;
+}
+
+a {
+	color: #0099ff;
+	text-decoration:none;
+}
+
+ul {
+	padding-left: 18px;
+}
+
+.blinking {
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker { 
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones */
+#container {
+	background: rgb(255,255,255); /* Old browsers */
+    background-image: -moz-linear-gradient(top,  rgba(255,255,255,.7) 0%, rgba(221,221,221,.4) 100%), url(/images/bg.jpg); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.7)), color-stop(100%,rgba(221,221,221,.4))), url(../image/bg.jpg); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top,  rgba(255,255,255,.7) 0%,rgba(221,221,221,.4) 100%), url(/images/bg.jpg); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top,  rgba(255,255,255,.7) 0%,rgba(221,221,221,.4) 100%), url(/images/bg.jpg); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top,  rgba(255,255,255,.7) 0%,rgba(221,221,221,.4) 100%), url(/images/bg.jpg); /* IE10+ */
+    background-image: linear-gradient(to bottom,  rgba(255,255,255,.7) 0%,rgba(221,221,221,.4) 100%), url(/images/bg.jpg); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+#header {
+    margin-top: -24px;
+	left: 0;
+	top: 0;
+    -o-transition:all .3s linear;
+    -moz-transition:all .3s linear;
+    -webkit-transition:all .3s linear;
+    transition:all .3s linear;
+}
+
+#header img {
+	float: left;
+	margin-left: -68px;
+	-webkit-transform: scale(.5);
+    -ms-transform: scale(.5);
+    transform: scale(.5);
+}
+
+#tagline {
+	float: right;
+	font-size:.8em;
+	margin: 55px 5px 0 auto;
+    position: absolute;
+    right: 0;
+	text-align: right;
+    width:55%;
+}
+
+#main {
+	clear:both;
+	height: 400px;
+    margin: 0 auto;
+    padding: 0 20px 16%;
+    width: auto;
+    max-width: 960px;
+}
+
+#graphic {
+    width: 100%;
+    margin: 0 auto;
+	position: relative;
+	top: -12%;
+    -webkit-transform: scale(.66);
+    -ms-transform: scale(.66);
+    transform: scale(.66);
+    -o-transition:all .3s linear;
+    -moz-transition:all .3s linear;
+    -webkit-transition:all .3s linear;
+    transition:all .3s linear;
+}
+
+.face {
+	-webkit-border-radius: 50%;
+    border-radius: 50%;
+    border:8px solid rgba(255,255,255,.5);
+	position: absolute;
+    -o-transition:all .3s linear;
+    -moz-transition:all .3s linear;
+    -webkit-transition:all .3s linear;
+    transition:all .3s linear;
+    height: 44px;
+	width: 44px;
+    -webkit-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+.face img {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border:2px solid;
+    margin-top:-2px;
+    margin-left:-2px;
+	position: relative;
+	width: 100%;
+}
+
+#faceTL {
+	margin-right: 102%;
+	margin-top: 90px;
+	right: 0;
+}
+
+#faceTL img {
+    border-color: #E79224;
+}
+
+#faceTL .commentBubble {
+	left: -8px;
+}
+
+#faceTR {
+	left: 50%;
+	margin-left: 55%;
+    margin-top: -4px;
+}
+
+#faceTR img {
+    border-color: #BBD531;
+}
+
+#faceTR .commentBubble {
+	left: -11px;
+}
+
+#faceBR {
+	left: 50%;
+	margin-left: 53%;
+    margin-top:286px;
+}
+
+#faceBR img {
+    border-color: #564EA0;
+}
+
+#faceBR .commentBubble {
+	left: -8px;
+}
+
+.commentBubble {
+	font-size: .8em;
+	left: -20px;
+	position: absolute;
+	top: 56px;
+	width: 66px;
+}
+
+.line {
+	border-left: 2px dashed #777;
+	position:absolute;
+}
+
+#lineTL {
+	margin-left: 44px;
+	margin-top: -80px;
+	transform: rotate(23deg);
+	-ms-transform: rotate(23deg); /* IE 9 */
+	-webkit-transform: rotate(23deg); /* Safari and Chrome */
+	height: 100px;
+	width: 20%;
+}
+
+#lineTR {
+	margin-left: -6px;
+	margin-top: 15px;
+	transform: rotate(51deg);
+	-ms-transform: rotate(51deg); /* IE 9 */
+	-webkit-transform: rotate(51deg); /* Safari and Chrome */
+	height: 60px;
+	width: 20%;
+}
+
+#lineBR {
+	margin-left: -5px;
+	margin-top: 14px;
+	transform: rotate(69deg);
+	-ms-transform: rotate(69deg); /* IE 9 */
+	-webkit-transform: rotate(69deg); /* Safari and Chrome */
+	height: 45px;
+	width: 15%;
+}
+
+#post {
+	color: #fff;
+    position: relative;
+	top: -66px;
+}
+
+#post div {
+	background-color: rgba(0,0,0,.5);
+	-webkit-box-shadow:  0px 0px 25px 0px rgba(0, 0, 0, .3);
+    box-shadow:  0px 0px 25px 0px rgba(0, 0, 0, .3);
+	margin:0 auto 4px;
+	padding: 3% 5%;
+	width: 70%;
+}
+
+#post div.img {
+	background-color: transparent;
+	margin-bottom: 0;
+	padding: 0;
+	width: 80%;
+}
+
+#title {
+	font-size: 18px;
+}
+
+#post #img-lead, #post #img-1 { /* 1.8 : 1  image aspect ratio*/
+	overflow: hidden;
+}
+
+#post div img {
+	width: 100%;
+}
+
+#post #btn-create-container {
+	background-color: transparent;
+	margin-top: 15px;
+	padding: 0;
+	width: 80%;
+}
+
+#create {
+	background: #00ccff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #00ccff 0%, #0099ff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00ccff), color-stop(100%,#0099ff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #00ccff 0%,#0099ff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #00ccff 0%,#0099ff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #00ccff 0%,#0099ff 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #00ccff 0%,#0099ff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ccff', endColorstr='#0099ff',GradientType=0 ); /* IE6-9 */
+	border-radius: 4px;
+	border: 0;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	font-size: 1.5em;
+	height: 50px;
+	text-align: center;
+	width: 100%;
+
+	padding: 1px 0px;
+	line-height: 50px;
+	vertical-align: middle;
+	margin: 0;
+}
+
+#subcontent {
+	margin: 0 auto;
+    padding: 0 4% 20px;
+    width: auto;
+    max-width: 960px;
+}
+
+#text div {
+    margin-bottom:92px;
+}
+
+.pad {
+	border: 1px solid #ccc;
+	max-width: 477px;
+	width: 75%;
+}
+
+#col-right {
+	margin-bottom: 100px;
+}
+
+#col-right > div {
+	margin-bottom: 40px;
+}
+
+h2 {
+	color: #555;
+}
+
+#footer {
+	clear:both;
+	text-align: center;
+}
+}
+
+@media (min-width:481px) { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+#container {
+	padding-bottom: 8%;
+}
+
+#header {
+	margin-top: -17px;
+    -o-transition:all .3s linear;
+    -moz-transition:all .3s linear;
+    -webkit-transition:all .3s linear;
+    transition:all .3s linear;
+}
+
+#header img {
+	margin-left: -48px;
+	-webkit-transform: scale(.65);
+    -ms-transform: scale(.65);
+    transform: scale(.65);
+}
+
+#tagline {
+	float: none;
+	font-size:.9em;
+	margin: 58px auto 0 184px;
+	right: auto;
+	text-align:left;
+	width: 57%;
+}
+
+#text {
+    width: 100%;
+}
+
+#graphic {
+	top: -16%;
+}
+
+.face {
+	border-width: 10px;
+	height: 54px;
+	width: 54px;
+}
+
+.face img {
+	height: 50px;
+	margin-left: 0;
+	margin-top: 0;
+	width: 50px; 
+}
+
+#faceTL {
+    margin-right:103%;
+	margin-top: 90px;
+}
+
+#faceTL .commentBubble {
+    left: -15px;
+}
+
+#faceTR {
+    margin-top: -22px;
+}
+
+#faceTR .commentBubble {
+    left: -15px;
+}
+
+#faceBR {
+    margin-top:350px;
+    margin-right:4%;
+}
+
+#faceBR .commentBubble {
+    left: -17px;
+}
+
+.commentBubble {
+	font-size: 12px;
+	top: 69px;
+	width: 100px;
+}
+
+#lineTL {
+	margin-left: 65px;
+	margin-top: -87px;
+	transform: rotate(29deg);
+	-ms-transform: rotate(29deg); /* IE 9 */
+	-webkit-transform: rotate(29deg); /* Safari and Chrome */
+	height: 100px;
+	width: 20%;
+}
+
+#lineTR {
+	margin-left: -14px;
+	margin-top: 15px;
+	transform: rotate(62deg);
+	-ms-transform: rotate(62deg); /* IE 9 */
+	-webkit-transform: rotate(62deg); /* Safari and Chrome */
+	height: 74px;
+	width: 20%;
+}
+
+#lineBR {
+	margin-left: -21px;
+	margin-top: 27px;
+	transform: rotate(69deg);
+	-ms-transform: rotate(69deg); /* IE 9 */
+	-webkit-transform: rotate(69deg); /* Safari and Chrome */
+	height: 45px;
+	width: 15%;
+}
+}
+
+@media (min-width:641px) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+#container {
+	padding-bottom: 10%;
+}
+
+#header {
+    margin-top: -7px;
+}
+
+#header img {
+	margin-left: -20px;
+	-webkit-transform: scale(.85);
+    -ms-transform: scale(.85);
+    transform: scale(.85);
+}
+
+#tagline {
+    font-size:1.2em;
+    margin:61px auto 0 236px;
+}
+
+#main {
+	height: 480px;
+	padding: 0 20px 20%;
+}
+
+#post {
+	position:absolute;
+    top:134px;
+}
+
+.face {
+	height: 69px;
+	width: 69px;
+}
+
+.face img {
+	height: 65px;
+	width: 65px; 
+}
+
+#faceTL {
+    margin-right: 102%;
+	margin-top: 410px;
+}
+
+#faceTR {
+	margin-left: 56%;
+	margin-top: 220px;
+}
+
+#faceTR .commentBubble {
+	left: -9px;
+}
+
+#faceBR {
+    margin-top:745px;
+    margin-left:52%;
+}
+
+#faceBR .commentBubble {
+    left: -9px;
+}
+
+.commentBubble {
+	top: 82px;
+}
+
+#lineTL {
+	margin-left: 73px;
+	margin-top: -179px;
+	transform: rotate(22deg);
+	-ms-transform: rotate(22deg); /* IE 9 */
+	-webkit-transform: rotate(22deg); /* Safari and Chrome */
+	height: 232px;
+	width: 20%;
+}
+
+#lineTR {
+	margin-left: -42px;
+	margin-top: 38px;
+	transform: rotate(62deg);
+	-ms-transform: rotate(62deg); /* IE 9 */
+	-webkit-transform: rotate(62deg); /* Safari and Chrome */
+	height: 74px;
+	width: 20%;
+}
+
+#lineBR {
+	margin-left: -22px;
+	margin-top: 27px;
+	transform: rotate(69deg);
+	-ms-transform: rotate(69deg); /* IE 9 */
+	-webkit-transform: rotate(69deg); /* Safari and Chrome */
+	height: 66px;
+	width: 15%;
+}
+}
+
+@media (min-width:961px) { /* tablet, landscape iPad, lo-res laptops and desktops */ 
+#container {
+	padding-bottom: 96px;
+}
+	
+#header {
+    margin-top: -7px;
+}
+
+#header img {
+	margin-left: 0;
+	margin-top: 8px;
+	-webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+#tagline {
+    font-size:1.3em;
+    margin:73px auto 0 289px;
+}
+
+#main {
+	height: 550px;
+	padding-bottom: 170px;
+}
+
+#graphic {
+	top: -88px;
+    width:60%;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+#post {
+	top: 108px;
+}
+
+#faceTL {
+    margin-right: 104%;
+	margin-top: 315px;
+}
+
+#faceBR {
+    margin-top:582px;
+}
+
+#lineTL {
+	margin-left: 72px;
+	margin-top: -135px;
+	transform: rotate(27deg);
+	-ms-transform: rotate(27deg); /* IE 9 */
+	-webkit-transform: rotate(27deg); /* Safari and Chrome */
+	height: 205px;
+	width: 20%;
+}
+
+#lineTR {
+	margin-left: -42px;
+	margin-top: 38px;
+	transform: rotate(62deg);
+	-ms-transform: rotate(62deg); /* IE 9 */
+	-webkit-transform: rotate(62deg); /* Safari and Chrome */
+	height: 74px;
+	width: 20%;
+}
+
+#lineBR {
+	margin-left: -18px;
+	margin-top: 27px;
+	transform: rotate(69deg);
+	-ms-transform: rotate(69deg); /* IE 9 */
+	-webkit-transform: rotate(69deg); /* Safari and Chrome */
+	height: 66px;
+	width: 15%;
+}
+
+#subcontent > div {
+	padding-bottom: 40px;
+}
+
+#text {
+	float: left;
+    max-width: 480px;
+	width: 50%;
+}
+
+#text div {
+	margin-right: 20px;
+    margin-bottom:92px;
+    padding: 10px;
+}
+
+#col-right {
+	float: right;
+	max-width: 480px;
+	width: 50%;
+}
+
+#col-right > div {
+	margin-bottom: 20px;
+    padding: 10px;
+}
+}

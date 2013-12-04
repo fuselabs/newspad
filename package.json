@@ -1,0 +1,28 @@
+{
+  "name": "NewsPad",
+  "version": "0.1.0",
+  "author": "",
+  "description": "NewsPad is a collaborative web app for realtime blog post creation",
+  "contributors": [
+    {}
+  ],
+  "main": "./server.js",
+  "keywords": [
+    "azure",
+    "express",
+    "sharejs",
+    "blogging",
+    "documents"
+  ],
+  "dependencies": {
+    "jade": "*",
+    "express": "~3.1.0",
+    "redis": "*",
+    "underscore":"*"
+  },
+  "noAnalyze": true,
+  "license": "TBA",
+  "engines": {
+    "node": ">=0.6.14"
+  }
+}

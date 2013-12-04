@@ -1,0 +1,94 @@
+<!-- Newspad ver. 1
+Copyright (c) Microsoft Corporation
+All rights reserved. 
+Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.
+ -->
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"HP8570-4-1784-stderr-1371850911845.txt","computername":"HP8570-4","pid":1784,"type":"stderr","created":1371850911845},{"file":"HP8570-4-1784-stdout-1371850911841.txt","computername":"HP8570-4","pid":1784,"type":"stdout","created":1371850911841},{"file":"HP8570-4-2260-stdout-1371851905992.txt","computername":"HP8570-4","pid":2260,"type":"stdout","created":1371851905992},{"file":"HP8570-4-2372-stderr-1371851177122.txt","computername":"HP8570-4","pid":2372,"type":"stderr","created":1371851177122},{"file":"HP8570-4-2372-stdout-1371851177119.txt","computername":"HP8570-4","pid":2372,"type":"stdout","created":1371851177119},{"file":"HP8570-4-2892-stdout-1371851695066.txt","computername":"HP8570-4","pid":2892,"type":"stdout","created":1371851695066},{"file":"HP8570-4-3220-stdout-1371852086539.txt","computername":"HP8570-4","pid":3220,"type":"stdout","created":1371852086539},{"file":"HP8570-4-3612-stdout-1371852927339.txt","computername":"HP8570-4","pid":3612,"type":"stdout","created":1371852927339},{"file":"HP8570-4-3672-stdout-1371850956911.txt","computername":"HP8570-4","pid":3672,"type":"stdout","created":1371850956911},{"file":"HP8570-4-4304-stdout-1371851907562.txt","computername":"HP8570-4","pid":4304,"type":"stdout","created":1371851907562},{"file":"HP8570-4-4380-stdout-1371850918960.txt","computername":"HP8570-4","pid":4380,"type":"stdout","created":1371850918960},{"file":"HP8570-4-5492-stdout-1371852019054.txt","computername":"HP8570-4","pid":5492,"type":"stdout","created":1371852019054},{"file":"HP8570-4-7244-stdout-1371852011872.txt","computername":"HP8570-4","pid":7244,"type":"stdout","created":1371852011872},{"file":"HP8570-4-7308-stdout-1371852574118.txt","computername":"HP8570-4","pid":7308,"type":"stdout","created":1371852574118},{"file":"HP8570-4-7372-stdout-1371851992466.txt","computername":"HP8570-4","pid":7372,"type":"stdout","created":1371851992466},{"file":"HP8570-4-8488-stdout-1371851073036.txt","computername":"HP8570-4","pid":8488,"type":"stdout","created":1371851073036},{"file":"HP8570-4-8628-stdout-1371851921767.txt","computername":"HP8570-4","pid":8628,"type":"stdout","created":1371851921767},{"file":"HP8570-4-8764-stdout-1371850930712.txt","computername":"HP8570-4","pid":8764,"type":"stdout","created":1371850930712},{"file":"HP8570-4-8972-stdout-1371852071822.txt","computername":"HP8570-4","pid":8972,"type":"stdout","created":1371852071822},{"file":"HP8570-4-9708-stdout-1371852027206.txt","computername":"HP8570-4","pid":9708,"type":"stdout","created":1371852027206},{"file":"HP8570-4-9776-stdout-1371851009046.txt","computername":"HP8570-4","pid":9776,"type":"stdout","created":1371851009046}];
+        var lastUpdated = 1371852928681;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>

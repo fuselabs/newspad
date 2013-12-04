@@ -1,0 +1,179 @@
+/* Newspad ver. 1
+Copyright (c) Microsoft Corporation
+All rights reserved. 
+Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.*/
+
+#content, .section_content{
+  white-space: pre-wrap;
+}
+
+#edit_toolbar{
+/*  padding-left:10px;
+  padding-right:10px;
+  border-radius:10px;*/
+  /*border:1px solid #ddd;
+  background:#eee;*/
+}
+
+.navbar-fixed-top .brand{
+  margin-right:0px !important; 
+  padding-right:5px !important;
+}
+
+.title{
+  font-size:90%;
+  text-wrap:none;
+  overflow:hidden;
+  height:40px;
+}
+
+.docs-sidenav{
+  width: 228px;
+  margin: 30px 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+  box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+
+.docs-sidenav > li > a {
+    display: block;
+    width: 190px;
+    margin: 0 0 -1px;
+    padding: 8px 14px;
+    border: 1px solid #e5e5e5;
+}
+
+.docs-sidenav > li > a:hover {
+  background: #efefef !important;
+}
+
+.docs-sidenav > li:first-child > a {
+  -webkit-border-radius: 6px 6px 0 0;
+  -moz-border-radius: 6px 6px 0 0;
+  border-radius: 6px 6px 0 0;
+}
+
+.docs-sidenav > li:last-child > a {
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+}
+.docs-sidenav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+  -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+   box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+}
+
+
+/* embed styles */
+
+#embed_spinner{
+  margin-right:10px;
+  opacity:0.8;
+  display:none;
+}
+
+#embed .embed{
+  max-height:280px;
+}
+
+
+/* Notes styles */
+
+.spinner{
+  margin-right:10px;
+  opacity:0.8;
+}    
+
+.note_area{
+  display:none;
+}
+
+.notes{
+  margin-left:10px;
+  margin-right:10px;
+  padding:2px;
+  padding-bottom:0px;
+  border-bottom-left-radius:10px !important;
+  border-bottom-right-radius:10px !important;
+  /*background:#f3f3f3;*/
+  padding-bottom:10px;
+}
+
+.notes .highlighted{
+  background:#ffcccc;
+  font-weight:bold;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.note{
+  border-top:1px solid #eee;
+  font-size:85%;
+  padding:0px;
+  padding-left:5px;
+  margin-top:2px;
+}
+
+.note .author,.request_note .author{
+  font-weight:bold;
+}
+
+.note .date,.request_note .date{
+  font-style:italic;
+}
+
+.notes .btn{
+ font-size:85%;
+ width:100%;
+ line-height:100%;
+}
+
+.request_note{
+  margin-top:10px;
+  background:#eee;
+  padding:10px;
+}
+
+/* Request Improvement Styles */
+
+#request_improvement textarea,#request_improvement input{
+  font-size:85%;
+}
+
+#request_improvement textarea{
+  width:95%;
+  height:100px;
+}
+#request_improvement input{
+  font-weight:strong;
+  width:50%;
+}
+
+#request_improvement .volunteers{
+  white-space: pre-line;
+}
+
+/* only show the number of improvement requests if it's nonzero*/
+#improve .label{
+ display:none;
+}
+
+/* anything with the class .editor should only be visible 
+ * when edit mode is active */
+.span8.editor{
+  display:none;
+}
