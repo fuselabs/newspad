@@ -1,0 +1,80 @@
+//- Newspad ver. 1
+//- Copyright (c) Microsoft Corporation
+//- All rights reserved. 
+//- Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+//- THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+//- See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.
+
+!!! 5
+html
+  head
+    title Create a new NewsPad
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/signup.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.min.css')
+    script(src='/javascripts/lib/jquery-2.0.3.min.js')
+    script(src='/javascripts/lib/jquery.cookie.js')
+    script(src='/javascripts/lib/bootstrap.min.js')
+    script(src='/javascripts/lib/bootstrap-affix.js')
+    script(src='/javascripts/lib/underscore-min.js')
+    script(src='/javascripts/lib/backbone-min.js')
+    script(src='/js/b/bcsocket.js')
+    script(src='/js/s/share.js')
+    script(src='/js/s/textarea.js')
+    script(src='/js/s/json.js')
+    script(src='/javascripts/app/new_pad_view.js')
+    script(src='/javascripts/lib/Math.uuid.js', defer)
+    script(src='/javascripts/app/activity_logger.js', defer)
+    link(href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
+  body
+    div.container
+      div.row-fluid
+        h3.span12(style="text-align:center")
+        img(src="/images/NewsPad.png")
+        h3.span12.tagline(style="color:#44aa88;text-align:center;font-family: 'Noto Sans', sans-serif;") Create meaningful community stories, as a community
+      div.row
+        div.span6
+          //h1= title
+          //p Welcome to #{title}
+      div.row
+        hr
+      div.row
+        div(style="text-align:center")
+          a#new_bottom.btn.btn-warning(href="#new", data-toggle="modal") Create Story Together
+        
+    div#new.modal.hide.fade
+      div.modal-header
+        button(type="button",class="close",data-dismiss="modal", aria-hidden="true")&times;
+        h3 Create a NewsPad
+      div.modal-body
+        p What is this pad about?  
+          input#topic(type="text", name="topic", placeholder="capitol hill garage sale...")
+        div.row-fluid#suggestions
+          h4 Headline suggestions
+          p A good headline draws people to your pad and gives contributors a structure to contribute.
+          ul.nav.nav-list#headlines
+          h4 Headline text
+          input#headline_text(name="headline_text", placeholder="click a suggestion or type your own here")
+      div.modal-footer
+        a.spinner
+          img(src="/images/spinner.gif")
+        a.btn.btn-warning#create_pad(href="#") Create a NewsPad 
+        a.btn(href="#", data-dismiss="modal") Close
+
+    script(src='/javascripts/app/new_pad_view.js', defer)
+
+    script#headline_button(type="text/html")
+      |<li class=""><span class="btn"><%=headline%></span></li>
+    script.headline(type="text/html")
+      |5 Things You Missed At <%=topic%>
+    script.headline(type="text/html")
+      |5 Things We Loved At <%=topic%>
+    script.headline(type="text/html")
+      |Why You Should Pay Attention to <%=topic%>
+    script.headline(type="text/html")
+      |8 Candid Facts About <%=topic%>
+    script.headline(type="text/html")
+      |Everything You Need To Know About <%=topic%>

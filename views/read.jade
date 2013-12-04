@@ -1,0 +1,239 @@
+//- Newspad ver. 1
+//- Copyright (c) Microsoft Corporation
+//- All rights reserved. 
+//- Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+//- THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+//- See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.
+
+extends layout
+
+block content
+  // IMPROVEMENT REQUEST RESPONSE MODAL DIALOGUE
+  div#improvethis(class="modal hide fade")
+    div.modal-header
+      button.close(type="button",data-dismiss="modal", aria-hidden="true")&times;
+      h3 Can You Improve This Post?
+    div.modal-body
+      p Can you make this post better? It will only take a moment. Here's what we need:
+      p loading ...
+    div.modal-footer
+      a.spinner
+        img(src="/images/spinner.gif")
+      span#answer.btn.btn-info(data-dismiss="modal") Answer This Request
+      a.btn(href="#", data-dismiss="modal") Just Take Me to the Article
+
+  // VERSION HISTORY MODAL DIALOGUE
+  div#versions(class="modal hide fade")
+   div.modal-header
+     button.close(type="button",data-dismiss="modal", aria-hidden="true")&times;
+     h3 Version History
+   div#version_cards.modal-body
+   div.modal-footer
+    a(href="#", class="btn", data-dismiss="modal") Close
+
+  // EXPORT EMBED CODE MODAL DIALOGUE
+  div#export(class="modal hide fade")
+    div.modal-header
+      button(type="button",class="close",data-dismiss="modal", aria-hidden="true")&times;
+      h3 Export Article
+    div.modal-body
+      p To embed this article, copy this HTML and paste it into your site.
+      label width:
+        input#embed_width(name="embed_width", style="width:30px;", value="500")
+      label height:
+        input#embed_height(name="embed_height", style="width:30px;", value="650")
+      textarea#export_html
+    div.modal-footer
+      a.btn(href="#", data-dismiss="modal") Close
+
+  // EMBED MEDIA MODAL DIALOGUE
+  div#embed(class="modal hide fade")
+    div.modal-header
+      button.close(type="button",data-dismiss="modal", aria-hidden="true")&times;
+      h3 Add Catchy Media
+      p Paste in the web address of the page containing media, and we'll fetch it:
+      div(style="align:center")
+        input(style="width: 80%")
+        &nbsp;
+        a#fetch_media.btn Fetch
+    div.modal-body
+      div.contents
+    div.modal-footer
+      span#embed_spinner
+        img(src="/images/spinner.gif")
+      a#insert_media.btn.btn-info(href="#", data-dismiss="modal") Insert Media
+      a(href="#", class="btn", data-dismiss="modal") Close
+  div#request_improvement.modal.hide.fade
+    div.modal-header
+      button.close(type="button",data-dismiss="modal", aria-hidden="true")&times;
+      h3 Request Improvements to this Section
+    div.modal-body
+      div.row-fluid
+        div.span6.row-fluid
+          textarea#note_entry(value="Hey [twitter account], can you add a photo to our newspad?") 
+          label From: 
+            input.name(placeholder="your name or twitter account here")
+          //label Copy link: 
+            input.url
+        div.span6.row-fluid
+          //p Ask people on Twitter to improve this section or leave a note for other readers. You may want to ask these people:
+          //ul         
+          p Best results come from asking someone specific to help on Twitter. These people have volunteered to help:
+          p.volunteers
+    div.modal-footer
+      span#tweet_note.btn.btn-info(href="#") Tweet your request
+      span#leave_note.btn Leave a Note
+      a.btn(href="javascript:none(0);", data-dismiss="modal") Close
+  // MAIN ARTICLE CONTAINER
+  div#article_container.container-fluid
+    link(rel='stylesheet', href='/stylesheets/article.css')
+    link(rel='stylesheet', href='/stylesheets/read.css')
+    link(rel='stylesheet', href='/stylesheets/edit.css')
+    input#article_id(type="hidden", name="article_id", value="#{article}")
+    //div.row-fluid
+      div.span4
+        a(href="/#{title}/edit", target="_top") (Edit on NewsPad)
+    div.row-fluid
+      div#article_contents.span8
+      div.span4.docs-sidebar
+        div.navbar#edit_toolbar(data-spy="affix",data-offset-top="00", style="position:fixed")
+          ul.nav.nav-list.docs-sidenav
+            li
+              a#improve(href="javascript:none();") 
+                span.label.label-info &nbsp;
+                |  Improvement Requests
+            li
+              a#offer_help(href="javascript:none();") 
+                i.icon-chevron-left
+                | Offer To Help
+            li
+              a#edit_article(href="javascript:none();") 
+                i.icon-chevron-left
+                | Edit Article
+          div &nbsp;
+          div.people
+            h5 Contributors
+            div#contributors
+            h5 Add Your Name to Offer Help
+            div#help_offers(data-toggle="tooltip", data-html="true", data-placement="bottom", data-original-title="<strong>Add your name here to offer help. Consider adding a Twitter account so you can be reached with requests.</strong>")
+            h5
+              a#export_button(data-toggle="modal", href="#export") Embed this NewsPad
+    div.row-fluid
+      div.editor.span8
+        hr
+        span.btn.btn-primary#new_section Add a new section to this article
+  div.container-fluid
+    div.row
+      hr
+
+  script(src='/javascripts/lib/jquery.embedly.min.js', defer)
+  script(src='/javascripts/lib/jquery-scrollTo.min.js', defer)
+  script(src='/javascripts/lib/Math.uuid.js', defer)
+  script(src='/javascripts/app/note_controller_view.js', defer)
+  script(src='/javascripts/app/read_view.js', defer)
+  script(src='/javascripts/app/toolbar_view.js', defer)
+  script(src='/javascripts/app/master_router.js', defer)
+  script(src='/javascripts/app/activity_logger.js', defer)
+  script#contributor_template(type="text/html")
+    |     <div class="section_content"></div>
+    |     <div class="edit_view">
+    |       <textarea class="contributor_editor" placeholder="add your name here..."></textarea>
+    |     </div>
+  script#title_template(type='text/html')
+    |     <div class="section_content"></div>
+    |     <div class="edit_view">
+    |       <textarea class="section_title_editor" placeholder="write section title here..."></textarea>
+    |     </div>
+  script#media_filler_template(type='text/html')
+    |     <div class="media_filler"> Edit to Add Media</div>
+  script#media_template(type='text/html')
+    |     <div class="section_content media_content"></div>
+    |     <div class="edit_view">
+    |       <textarea class="section_editor" placeholder="paste media embed code here or click the EMBED MEDIA button"></textarea>
+    |       <div class="btn-toolbar">
+    |         <div class="btn-group">
+    |           <a class="btn btn-info show_media" href="#embed" data-name="<%=name%>" data-toggle="modal" >Embed Media</a>
+    |         </div>
+    |         <div class="btn-group">
+    |           <div class="btn view_media">View</div>
+    |           <div class="btn edit_media active">Edit</div>
+    |         </div>
+    |         <div class="btn-group">
+    |           <!--<div class="btn"><span class="label label-info">5</span> requests</div>-->
+    |           <a class="btn show_versions" href="#versions" data-name="<%=name%>" data-toggle="modal"><i class="icon-time"></i></a>
+    |         </div>
+    |       </div>
+    |     </div>
+    |     <!--------- notes --------->
+    |     <div class="note_area">
+    |     </div>
+  script#content_template(type='text/html')
+    |     <div class="section_content"></div>
+    |     <div class="edit_view">
+    |       <textarea class="section_editor" placeholder="write some text to explain this section"></textarea>
+    |       <div class="btn-toolbar">
+    |         <div class="btn-group">
+    |           <!--<div class="btn">Needs improvement</div>-->
+    |           <div class="btn"><i class="icon-time"></i></div>
+    |         </div>
+    |       </div>
+    |     </div>
+  script#section_template(type='text/html')
+    |<!--<div class="section" id='<%=id%>'>-->
+    | <div class="row-fluid">
+    |   <div class="span12">
+    |     <h3 class="section_title" id="<%=id%>_title"></h3>
+    |   </div>
+    | </div>
+    | <div class="row-fluid">
+    |   <div class="headerimages span12">
+    |     <div class="embed_target">
+    |        <div id="<%=id%>_image_doc"></div>
+    |     </div>
+    |   </div>
+    | </div>
+    | <div id="<%=id%>_content_container" class="row-fluid">
+    |   <div class="span12">
+    |     <div id="<%=id%>_content" ></div>
+    |   </div>
+    | </div>
+    |<!--</div>-->
+  script#version_card_template(type='text/html')
+    |<div class="version_card row-fluid">
+    |  <div class="span1 label"><%=v%></div>
+    |  <div class="span8 contents"><%=c%></div>
+    |</div>
+  script#notes_view_template(type='text/html')
+    | <div class="notes">
+    |   <div class="row-fluid">
+    |     <div class="span2"></div>
+    |     <div class="span8"> 
+    |       <a class="request" href="#request_improvement" data-toggle="modal" data-section=<%=section_id%>><i class="icon-chevron-left"></i> ask for improvements</a>
+    |     </div>
+    |   </div>
+    | </div>
+  script#note_view_container_template(type='text/html')
+    | <div id="<%=id%>" class="row-fluid">
+    | </div>
+  script#note_entry_template(type='text/html')
+    |Hi [twitter account], can you contribute to our pad about [topic]? <%=url%>
+  script#note_view_template(type='text/html')
+    |   <div class="span11 note">
+    |     <span class="author"><%=from%></span>:
+    |     <span class="message"><%=message%></span>
+    |     <span class="link">(<a target="_blank" href="<%=url%>">link</a>)</span>
+    |     <!--<span class="state"><%=state%></span>-->
+    |   </div>
+    |   <div class="span1"> 
+    |     <span class="close" data-id="<%=id%>"><i class="icon-remove-circle"></i></span>
+    |   </div>
+  script#embed_template(type='text/html')
+    |<a id="newspad_article" href="http://newspad.at/<%=id%>/read" data-article-id="<%=id%>" data-width="<%=width%>px" data-height="<%=height%>px" class="newspad-article">Read about "<%=id%>" on NewsPad</a><script type="text/javascript">!function(d,s,id){var e,f=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'http';if(!d.getElementById(id)){e=d.createElement(s);e.id=id; e.src=p + "://newspad.at/javascripts/app/embed.js";f.parentNode.insertBefore(e,f);}}(document,"script","newspad-embed");[/script]
+  script#improvement_note_template(type="text/html")
+    | <p>Can you make this post better? It will only take a moment. Here's what we need:</p>
+    | <div class="request_note">
+    |   <span class="author"><%=from%></span>:
+    |   <span class="message"><%=message%></span>
+    |   <span class="state label"><%if(state=="closed"){%><%=state%><%}%></span><br/><br/>
+    |   Made at <span class="date"><%=date%></span>
+    | </div>

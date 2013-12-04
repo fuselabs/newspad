@@ -1,0 +1,45 @@
+//- Newspad ver. 1
+//- Copyright (c) Microsoft Corporation
+//- All rights reserved. 
+//- Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+//- THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+//- See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.
+
+!!! 5
+html 
+  head
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.css')
+    //script(src='http://cdn.sockjs.org/sockjs-0.3.min.js')
+    script(src='/js/b/bcsocket.js', defer)
+    script(src='/js/s/share.js', defer)
+    script(src='/js/s/textarea.js', defer)
+    script(src='/js/s/json.js', defer)
+    script(src='/javascripts/lib/jquery-2.0.3.min.js')
+    script(src='/javascripts/lib/jquery.cookie.js')
+    script(src='/javascripts/lib/bootstrap.min.js')
+    script(src='/javascripts/lib/bootstrap-tooltip.js')
+    script(src='/javascripts/lib/underscore-min.js')
+    script(src='/javascripts/lib/backbone-min.js')
+    script(src='/javascripts/lib/holder.js')
+    script(src='/javascripts/lib/bootstrap-affix.js')
+    script(src='/javascripts/lib/expanding.js')
+  body
+    div(class="navbar navbar-fixed-top")
+      div(class="navbar-inner")
+        a(class="brand", href="/create")
+          img(src="/images/NewsPad.png",width="120", style="margin-top:11px; margin-left:-10px;width:120px")
+        //ul(class="nav")
+        //  li
+        //    a#export_button(href="#export", data-toggle="modal") ^
+        div(class="title",id="navbar_title")
+          img.spinner(src="/images/spinner.gif")
+      //ul(class="nav")
+    div#appspacer
+    div#app
+      block content
+    div.container#footer
+      p.span8 NewsPad is experimental software for local news reporting. 

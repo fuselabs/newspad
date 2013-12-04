@@ -1,0 +1,34 @@
+//- Newspad ver. 1
+//- Copyright (c) Microsoft Corporation
+//- All rights reserved. 
+//- Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+//- THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+//- See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.
+
+doctype 5
+html
+  head
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/signup.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.min.css')
+    script(src='/javascripts/lib/jquery-2.0.3.min.js')
+    script(src='/javascripts/lib/bootstrap.min.js')
+    script(src='/js/b/bcsocket.js', defer)
+    script(src='/js/s/share.js', defer)
+    script(src='/js/s/textarea.js', defer)
+    script(src='/js/s/json.js', defer)
+    script(src='/javascripts/lib/jquery.cookie.js')
+    script(src='/javascripts/lib/underscore-min.js')
+    script(src='/javascripts/lib/backbone-min.js')
+  body
+    //MAIN CONTENT GOES HERE
+    div.container(style="margin-top:30px")
+      div.row-fluid
+        div.span12(style="text-align:center;position:relative;")
+          canvas#logo(width="500", height="300", style="z-index:100")
+          div#logotype(style="position:absolute;z-index:200;font-size:64px; font-family:serif;font-weight:bold;") <span style="color:white">News</span> Pad
+
+
+  script(src='/javascripts/app/logo_view.js', defer)

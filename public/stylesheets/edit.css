@@ -1,0 +1,45 @@
+/* Newspad ver. 1
+Copyright (c) Microsoft Corporation
+All rights reserved. 
+Licensed under the Apache License, Version 2.0 (the ""License""); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
+See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.*/
+
+.section_editor{
+  width:100%;
+}
+
+.section_title_editor{
+  width:100%;
+  line-height: 40px;
+  font-size:24.5px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:bold;
+}
+
+.contributor_editor{
+}
+
+.edit_view{
+  display:none;
+}
+
+.btn-toolbar{
+  margin-top:-13px;
+}
+
+.media_content{
+  min-height:20px;
+  margin-bottom:13px;
+}
+
+.edit_view .btn{
+  padding-top:0px;
+  padding-bottom:0px;
+  border-top-left-radius:0px !important;
+  border-top-right-radius:0px !important;
+}
+
+.edit_view textarea{
+  border-bottom-left-radius:0px;
+}
