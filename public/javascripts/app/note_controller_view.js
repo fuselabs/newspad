@@ -17,7 +17,8 @@ var NoteControllerView = Backbone.View.extend({
     "click #leave_note": "leave_note"
   },
   //model passed in
-  initialize: function(){
+  initialize: function(options){
+    this.options = options || {};
     this.notes = this.options.notes;
     this.display_note_count();
     // placeholder for passing over the
