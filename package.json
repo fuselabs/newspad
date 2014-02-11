@@ -6,6 +6,9 @@
   "contributors": [
     {}
   ],
+  "scripts": {
+    "start": "node server.js"
+  },
   "main": "./server.js",
   "keywords": [
     "azure",
@@ -15,10 +18,11 @@
     "documents"
   ],
   "dependencies": {
-    "jade": "*",
     "express": "~3.1.0",
-    "redis": "*",
-    "underscore":"*"
+    "share": "<0.7.x",
+    "redis": "~0.10.0",
+    "underscore": "~1.6.0",
+    "jade": "~1.1.5"
   },
   "noAnalyze": true,
   "license": "TBA",
