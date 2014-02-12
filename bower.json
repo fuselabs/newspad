@@ -18,6 +18,8 @@
     "jquery.cookie": "~1.4.0",
     "jquery": "~2.1.0",
     "underscore": "~1.6.0",
-    "holderjs": "~2.3.1"
+    "holderjs": "~2.3.1",
+    "embedly-jquery": "~3.1.1",
+    "jquery.expanding-textareas": "*"
   }
 }
