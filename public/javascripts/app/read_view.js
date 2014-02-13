@@ -12,7 +12,8 @@ var NotesView = Backbone.View.extend({
     "click .request": "request_improvements"
   },
 
-  initialize: function(){
+  initialize: function(options){
+    this.options = options || {};
     this.note_view_container_template = _.template($("#note_view_container_template").html());
     this.note_entry_template = _.template($("#note_entry_template").html())
     this.section = this.options.section;
@@ -87,7 +88,8 @@ var NoteView = Backbone.View.extend({
     "click .close" : "close_note_event"
   },
 
-  initialize: function(){
+  initialize: function(options){
+    this.options = options || {};
     this.notes_view = this.options.notes_view;
     this.note = this.options.note;
     this.note.url = read_view.note_controller_view.note_url(this.note.id);
@@ -110,37 +112,38 @@ var NoteView = Backbone.View.extend({
 });
 
 var SectionView = Backbone.View.extend({
-    template: _.template($("#section_template").html()),
-    events:{
-    },
+  template: _.template($("#section_template").html()),
+  events:{
+  },
 
-    view_init_vals: function(section_id, type){
-      return {section: this, 
-              doc_name:section_id+"_" + type, 
-              el:"#" + section_id + "_" + type, 
-              readonly: this.readonly};
-    },
+  view_init_vals: function(section_id, type){
+    return {section: this, 
+            doc_name:section_id+"_" + type, 
+            el:"#" + section_id + "_" + type, 
+            readonly: this.readonly};
+  },
 
-    initialize: function(){
-      this.section_id = this.options.section_id;
-      this.readonly = this.options.readonly;
+  initialize: function(options){
+    this.options = options || {};
+    this.section_id = this.options.section_id;
+    this.readonly = this.options.readonly;
 
-      $("#article_contents").append(this.template({id:this.section_id}));
+    $("#article_contents").append(this.template({id:this.section_id}));
 
-      this.content = new ContentView(this.view_init_vals(this.section_id, "content"));
-      this.title = new TitleView(this.view_init_vals(this.section_id, "title"));
-      this.media = new MediaView(this.view_init_vals(this.section_id, "image_doc"));
-      this.render();
-    },
+    this.content = new ContentView(this.view_init_vals(this.section_id, "content"));
+    this.title = new TitleView(this.view_init_vals(this.section_id, "title"));
+    this.media = new MediaView(this.view_init_vals(this.section_id, "image_doc"));
+    this.render();
+  },
 
-    render: function(){
-    },
+  render: function(){
+  },
 
-    toggle_edit:function(){
-      this.content.toggle_edit();
-      this.title.toggle_edit();
-      this.media.toggle_edit();
-    }
+  toggle_edit:function(){
+    this.content.toggle_edit();
+    this.title.toggle_edit();
+    this.media.toggle_edit();
+  }
 
 });
 
@@ -149,7 +152,10 @@ var ContentView = Backbone.View.extend({
   events: {
   },
   
-  initialize: function(){
+  initialize: function(options){
+    if(_.isUndefined(this.options)){
+      this.options = options || {};
+    }
     this.doc_name = this.options.doc_name;
     this.section = this.options.section;
     //set to the opposite,
@@ -222,7 +228,8 @@ var MediaView = ContentView.extend({
     "click .edit_media": "edit_media"
   },
 
-  initialize: function(){
+  initialize: function(options){
+    this.options = options || {};
     MediaView.__super__.initialize.apply(this);
     this.media_filler_template = _.template($("#media_filler_template").html());
   },
