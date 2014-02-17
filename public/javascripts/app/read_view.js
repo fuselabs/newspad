@@ -179,6 +179,7 @@ var ContentView = Backbone.View.extend({
 
   update: function(){
     this.$el.find(".section_content").html(this.model.snapshot);
+    this.$el.find("textarea").trigger("change");
   },
 
   toggle_edit: function(){
@@ -196,12 +197,15 @@ var ContentView = Backbone.View.extend({
     content = this.$el.find(".section_content");
 
     this.$el.find(".expandingText").show();
-    this.model.attach_textarea(textarea.get(0), function(){
-      textarea.expandingTextarea();
-    });
+    this.model.attach_textarea(textarea.get(0));
+
+    //textarea.expandingTextarea();
+
     content.hide();
     edit_view.show();
     this.readonly = false;
+
+    textarea.expandingTextarea();
   },
 
   hide_edit: function(){
@@ -298,6 +302,7 @@ var TitleView = ContentView.extend({
     if(this.doc_name.search("_section_0_title") > -1){
       $("#navbar_title").html(this.model.snapshot);
     }
+    this.$el.find("textarea").trigger("change");
   }
 });
 
