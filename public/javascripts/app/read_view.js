@@ -199,8 +199,6 @@ var ContentView = Backbone.View.extend({
     this.$el.find(".expandingText").show();
     this.model.attach_textarea(textarea.get(0));
 
-    //textarea.expandingTextarea();
-
     content.hide();
     edit_view.show();
     this.readonly = false;
@@ -268,7 +266,7 @@ var MediaView = ContentView.extend({
     if(content.html().replace(/^\s+|\s+$/g, '').length == 0){
       content.html(this.media_filler_template());
     }
-
+    this.$el.find("textarea").trigger("change");
   },
 
   edit_media: function(e){
