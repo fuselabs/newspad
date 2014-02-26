@@ -10,11 +10,11 @@ sudo apt-get update
 sudo apt-get install -y nodejs
 sudo apt-get install -y redis-server
 
-# install bower globally
-npm install -g bower
+# install bower and gulp globally
+npm install -g bower gulp
 
 # download required modules
-cd /vagrant; npm install; bower install
+cd /vagrant; gulp install;
 
 # no need to wget all these files, everything should be in the libs folder that isn't through bower
 
